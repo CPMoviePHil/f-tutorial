@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:blue_project/screens/register.dart';
 import 'package:blue_project/screens/home.dart';
+import 'package:blue_project/screens/test.dart';
 void main() {
   runApp(MyApp());
 }
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyMainPage(title: 'Flutter Demo Home Page'),
+      routes: <String, WidgetBuilder>{'/test': (_) => new TestPage()},
     );
   }
 }
@@ -44,7 +46,9 @@ class _MyHomePageState extends State<MyMainPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _currentIndexes[_selectedIndex],
+      body: SingleChildScrollView(
+          child: _currentIndexes[_selectedIndex]
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
 

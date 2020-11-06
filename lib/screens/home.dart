@@ -9,13 +9,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePage2State extends State<MyHomePage> {
+  TextEditingController _textFieldController1 = new TextEditingController();
   int _counter = 0;
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+          const SizedBox(height: 30),
           Container(
             margin: const EdgeInsets.all(0.0),
             width: 90.0,
@@ -59,14 +61,35 @@ class _MyHomePage2State extends State<MyHomePage> {
           ),
           Container(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const RaisedButton(
-                  onPressed: null,
-                  child: Text(
-                      'Disabled Button',
-                      style: TextStyle(fontSize: 20)
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                          '請隨便輸入',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black87,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    Container(
+                      height: 80,
+                      width: 120,
+                      child: TextField(
+                        autofocus: true,
+                        controller: _textFieldController1,
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              height: 2.0,
+                              color: Colors.black
+                          ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 30),
                 RaisedButton(
@@ -78,9 +101,18 @@ class _MyHomePage2State extends State<MyHomePage> {
                 ),
                 const SizedBox(height: 30),
                 RaisedButton(
-                  onPressed: () {},
-                  textColor: Colors.white,
-                  padding: const EdgeInsets.all(0.0),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/test',
+                        arguments: {'name': _textFieldController1.text}).then((value) {
+                      // 新增第二個變數argument
+                      showDialog(
+                        // 新增一個對話框，用來顯示回傳的值
+                          context: context,
+                          child: AlertDialog(
+                            content: Text(value),
+                          ));
+                    });
+                  },
                   child: Container(
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
@@ -93,7 +125,7 @@ class _MyHomePage2State extends State<MyHomePage> {
                     ),
                     padding: const EdgeInsets.all(10.0),
                     child: const Text(
-                        'Gradient Button',
+                        'Go To',
                         style: TextStyle(fontSize: 20)
                     ),
                   ),
