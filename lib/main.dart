@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:blue_project/screens/register.dart';
 import 'package:blue_project/screens/home.dart';
 import 'package:blue_project/screens/test.dart';
+import 'package:blue_project/screens/for_column_test.dart';
 void main() {
   runApp(MyApp());
 }
@@ -15,7 +16,9 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyMainPage(title: 'Flutter Demo Home Page'),
-      routes: <String, WidgetBuilder>{'/test': (_) => new TestPage()},
+      routes: <String, WidgetBuilder>{
+        '/test': (_) => new TestPage(),
+      },
     );
   }
 }
